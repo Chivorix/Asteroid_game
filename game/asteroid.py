@@ -1,5 +1,5 @@
 from .circleshape import CircleShape
-from .constants import *
+from .constants import ASTEROID_MIN_RADIUS
 import pygame
 import random
 from .explosion_effect import Line
@@ -36,4 +36,4 @@ class Asteroid(CircleShape):
 # helper function
 def explosion(position, radius):
     for i in range(Line.num_lines):
-        line = Line(i, position, radius)
+        Line(i, position, radius)

@@ -1,6 +1,5 @@
 import pygame
-import random
-from .constants import *
+from .constants import ASTEROID_LVL_2, ASTEROID_LVL_3
 import csv
 from datetime import datetime
 import os

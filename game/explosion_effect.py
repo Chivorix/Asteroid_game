@@ -1,6 +1,5 @@
 import pygame
 import math
-from .constants import *
 
 
 class Line(pygame.sprite.Sprite):

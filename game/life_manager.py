@@ -1,4 +1,4 @@
-from .constants import *
+from .constants import FIRST_LIFE
 import pygame
 
 
