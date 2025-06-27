@@ -1,9 +1,10 @@
 import pygame
 import random
-from constants import *
+from .constants import *
 import csv
 from datetime import datetime
 import os
+
 
 class Score:
     def __init__(self, x, y, color):
@@ -15,15 +16,17 @@ class Score:
         self.high_score = 0
 
         if os.path.exists("high_score.csv"):
-            with open("high_score.csv", mode='r', newline='') as f:
+            with open("high_score.csv", mode="r", newline="") as f:
                 list_of_rows = csv.reader(f)
                 for row in list_of_rows:
                     if self.high_score < int(row[0]):
                         self.high_score = int(row[0])
-        
+
     def draw(self, screen):
         text_score = self.font.render(f"Score: {self.score}", True, self.color)
-        text_high_score = self.font.render(f"High Score: {self.high_score}", True, "orange")
+        text_high_score = self.font.render(
+            f"High Score: {self.high_score}", True, "orange"
+        )
         screen.blit(text_score, self.position)
         screen.blit(text_high_score, self.high_score_position)
 
@@ -40,7 +43,8 @@ class Score:
 
     def save_score(self):
         self.high_score = self.score
-        with open("high_score.csv", mode='a', newline='') as f:
+        with open("high_score.csv", mode="a", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow([self.high_score, datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
-
+            writer.writerow(
+                [self.high_score, datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
+            )

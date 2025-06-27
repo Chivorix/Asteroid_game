@@ -1,17 +1,18 @@
 import pygame
-from circleshape import CircleShape
-from constants import *
-from shot import Shot
+from .circleshape import CircleShape
+from .constants import *
+from .shot import Shot
+
 
 class Player(CircleShape):
     def __init__(self, x, y):
-        super().__init__(x,y,PLAYER_RADIUS)
+        super().__init__(x, y, PLAYER_RADIUS)
 
         self.rotation = 0
         self.timer = 0
         self.acceleration = 0
 
-    def triangle(self):                                         # using vectors to draw a triangle("The Ship")
+    def triangle(self):  # using vectors to draw a triangle("The Ship")
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
         a = self.position - forward * self.radius
@@ -20,7 +21,7 @@ class Player(CircleShape):
         return [a, b, c]
 
     def rotate(self, dt):
-        self.rotation += PLAYER_TURN_SPEED * dt                   # ensures smooth rotation
+        self.rotation += PLAYER_TURN_SPEED * dt  # ensures smooth rotation
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -29,13 +30,15 @@ class Player(CircleShape):
     def shoot(self):
         if self.timer < 0:
             bullet = Shot(self.position.x, self.position.y)
-            bullet.velocity = pygame.Vector2(0,-1).rotate(self.rotation) * PLAYER_SHOT_SPEED 
+            bullet.velocity = (
+                pygame.Vector2(0, -1).rotate(self.rotation) * PLAYER_SHOT_SPEED
+            )
             self.timer = PLAYER_SHOT_COOLDOWN
 
     def update(self, dt):
-        keys = pygame.key.get_pressed()                         # returns a list (or array) of boolean values, where each index corresponds to a specific key on the keyboard. If a key is being pressed, the value at its index is True, otherwise, it’s False.
+        keys = pygame.key.get_pressed()  # returns a list (or array) of boolean values, where each index corresponds to a specific key on the keyboard. If a key is being pressed, the value at its index is True, otherwise, it’s False.
 
-        if keys[pygame.K_a]:                                    
+        if keys[pygame.K_a]:
             self.rotate(-dt)
         if keys[pygame.K_d]:
             self.rotate(dt)
@@ -48,7 +51,7 @@ class Player(CircleShape):
             if self.acceleration > 0:
                 self.acceleration -= 0.03
                 if self.acceleration < 0:
-                    self.acceleration = 0 
+                    self.acceleration = 0
             self.move(-dt)
         if keys[pygame.K_s]:
             self.acceleration -= 0.01
@@ -56,5 +59,3 @@ class Player(CircleShape):
         if keys[pygame.K_SPACE]:
             self.shoot()
         self.timer -= dt
-
-        

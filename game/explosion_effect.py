@@ -1,6 +1,7 @@
 import pygame
 import math
-from constants import *
+from .constants import *
+
 
 class Line(pygame.sprite.Sprite):
     num_lines = 12
@@ -23,7 +24,9 @@ class Line(pygame.sprite.Sprite):
 
         self.start_x = self.center[0] + int(self.radius * self.cos)
         self.start_y = self.center[1] + int(self.radius * self.sin)
-        self.end_x = self.center[0] + int((self.radius + self.line_length) * self.cos)  # Lengthen the line
+        self.end_x = self.center[0] + int(
+            (self.radius + self.line_length) * self.cos
+        )  # Lengthen the line
         self.end_y = self.center[1] + int((self.radius + self.line_length) * self.sin)
 
         self.start = pygame.math.Vector2(self.start_x, self.start_y)
@@ -33,8 +36,8 @@ class Line(pygame.sprite.Sprite):
         pygame.draw.line(screen, "white", self.start, self.end, 2)
 
     def update(self, dt):
-        if int(self.angle_degrees) == 0: 
-            self.start[0] += 40 * dt    
+        if int(self.angle_degrees) == 0:
+            self.start[0] += 40 * dt
         elif int(self.angle_degrees) == 30:
             self.start[0] += 40 * dt
             self.start[1] += 22 * dt
@@ -67,8 +70,4 @@ class Line(pygame.sprite.Sprite):
             self.start[1] -= 25 * dt
 
         if self.start.distance_to(self.end) < 2:
-                self.kill()
-        
-
-
-
+            self.kill()

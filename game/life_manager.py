@@ -1,13 +1,14 @@
-from constants import *
+from .constants import *
 import pygame
+
 
 class LifeManager(pygame.sprite.Sprite):
     def __init__(self):
-        if hasattr(self, "containers"):       
+        if hasattr(self, "containers"):
             super().__init__(self.containers)
         else:
             super().__init__()
-        
+
         self.life_list = []
         for i in range(3):
             life = Life()
