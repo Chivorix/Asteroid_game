@@ -2,6 +2,23 @@
 
 "Build a clone of the classic Asteroids game using Pygame and object-oriented programming concepts. This guided project will help you understand how to use Pygame to create a game loop, handle user input, and manage game state. You'll also learn how to use object-oriented programming to create game objects and manage their interactions." --> Boot.dev
 
+## Requirements
+
+- **Python 3.11 or higher**
+- Dependencies listed in `requirements.txt`
+
+## Setup
+
+1. Clone this repository
+2. Create a virtual environment: `python -m venv venv`
+3. Activate the virtual environment:
+   - macOS/Linux: `source venv/bin/activate`
+   - Windows: `venv\Scripts\activate`
+4. Install dependencies: `pip install -r requirements.txt`
+5. Run the game: `python main.py`
+
+## About This Project
+
 I had a great time working on this project! Here are some key concepts that were introduced and enforced:
 
 - **Multi-file Python Project:** Utilized object-oriented programming (OOP) and imported custom classes from different files.
