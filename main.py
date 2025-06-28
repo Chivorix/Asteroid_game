@@ -1,5 +1,5 @@
 import pygame
-from game.constants import *
+from game.constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_X, PLAYER_Y
 from game.player import Player
 from game.asteroid import Asteroid
 from game.asteroidfield import AsteroidField
@@ -31,7 +31,7 @@ def main():
     LifeManager.containers = drawable
     Line.containers = (drawable, updatable, explosion_lines)
 
-    asteroid_spawner = AsteroidField()
+    AsteroidField()
     player = Player(PLAYER_X, PLAYER_Y)
     score = Score(SCREEN_WIDTH / 2 - 50, 20, "gold")
     life_manager = LifeManager()
@@ -44,7 +44,7 @@ def main():
         for obj in drawable:
             obj.draw(screen)
         for obj in asteroids:
-            if obj.collision(player):
+            if obj.triangle_collision(player):
                 if not life_manager.life_list:
                     print("Game Over!")  # checks if any lives are left
                     return
